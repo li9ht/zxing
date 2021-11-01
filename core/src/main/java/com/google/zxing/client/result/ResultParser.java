@@ -20,6 +20,7 @@ import com.google.zxing.Result;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -190,11 +191,7 @@ public abstract class ResultParser {
   }
 
   static String urlDecode(String encoded) {
-    try {
-      return URLDecoder.decode(encoded, "UTF-8");
-    } catch (UnsupportedEncodingException uee) {
-      throw new IllegalStateException(uee); // can't happen
-    }
+      return URLDecoder.decode(encoded, StandardCharsets.UTF_8);
   }
 
   static String[] matchPrefixedField(String prefix, String rawText, char endChar, boolean trim) {
